@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+* {
+    font-family: sans-serif;
+}
+
+.step-content {
+    display: none;
+    width: 100%;
+    transition: all 0.4s;
+}
+
+.step-content.active {
+    display: block;
+    animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Highlight labels when radio is checked */
+input[type="radio"]:checked+label {
+    background: rgb(255, 250, 230);
+    border-color: rgb(255, 230, 150);
+    color: #111014;
+    box-shadow: 0 0 0 2px rgba(190, 190, 25, 0.228);
+}
+
+.step-connector-fill {
+    transition: width 0.4s ease-in-out;
+}

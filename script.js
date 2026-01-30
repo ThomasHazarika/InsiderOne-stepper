@@ -1,170 +1,95 @@
 let currentStep = 1;
 const totalSteps = 4;
 
-// Store user selections
-const answers = {
-  step1: null,
-  step2: null,
-  step3: null,
-  confirm: false,
-};
+// SVGs
+const checkIcon = `<svg class="h-4 w-4 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>`;
+const activeDot = `<div class="h-2.5 w-2.5 rounded-full bg-[rgb(15,23,42)]"></div>`;
 
-const errorBox = document.getElementById("error-box");
-const nextBtn = document.getElementById("next-btn");
-const backBtn = document.getElementById("back-btn");
-
-// Step content blocks
-const stepContents = document.querySelectorAll(".step-content");
-
-// Step indicators
-const circles = [
-  document.getElementById("circle-1"),
-  document.getElementById("circle-2"),
-  document.getElementById("circle-3"),
-  document.getElementById("circle-4"),
-];
-
-const lines = [
-  document.getElementById("line-1"),
-  document.getElementById("line-2"),
-  document.getElementById("line-3"),
-];
-
-// Confirmation checkbox
-const confirmCheckbox = document.getElementById("confirm");
-
-init();
-
-function init() {
-  updateUI();
-  bindRadioInputs();
-  bindConfirmation();
+function isStepValid(step) {
+  if (step === 4) {
+    return document.getElementById("confirm").checked;
+  }
+  // Checks if any radio button in the current step group is checked
+  const radios = document.getElementsByName(`step${step}`);
+  return Array.from(radios).some((r) => r.checked);
 }
 
-function bindRadioInputs() {
-  const radios = document.querySelectorAll("input[type='radio']");
-
-  radios.forEach((radio) => {
-    radio.addEventListener("change", () => {
-      answers[`step${currentStep}`] = radio.value;
-      errorBox.classList.add("hidden");
-    });
+function updateUI() {
+  // Update Visibility
+  document.querySelectorAll(".step-content").forEach((el, idx) => {
+    el.classList.toggle("active", currentStep === idx + 1);
   });
-}
 
-function bindConfirmation() {
-  if (!confirmCheckbox) return;
+  if (currentStep > totalSteps) {
+    document.getElementById("step-content-final").classList.add("active");
+    document.getElementById("footer").classList.add("hidden");
+    return;
+  }
 
-  confirmCheckbox.addEventListener("change", () => {
-    answers.confirm = confirmCheckbox.checked;
-  });
+  // Update Indicators & Lines
+  for (let i = 1; i <= totalSteps; i++) {
+    const circle = document.getElementById(`circle-${i}`);
+    const line = document.getElementById(`line-${i}`);
+
+    if (i < currentStep) {
+      circle.innerHTML = checkIcon;
+      circle.className =
+        "flex h-8 w-8 items-center justify-center rounded-full bg-[#EBB400]";
+      if (line) line.style.width = "100%";
+    } else if (i === currentStep) {
+      circle.innerHTML = activeDot;
+      circle.className =
+        "flex h-8 w-8 items-center justify-center rounded-full bg-[#EBB400]";
+      if (line) line.style.width = "0%";
+    } else {
+      circle.innerHTML = `<span class="text-sm">${i}</span>`;
+      circle.className =
+        "flex h-8 w-8 items-center justify-center rounded-full bg-[#F9E8B2] text-[#222]";
+      if (line) line.style.width = "0%";
+    }
+  }
+
+  // Update Buttons
+  document
+    .getElementById("back-btn")
+    .classList.toggle("invisible", currentStep === 1);
+  document.getElementById("next-btn").innerText =
+    currentStep === totalSteps ? "Complete" : "Continue";
+  document.getElementById("error-box").classList.add("hidden");
 }
 
 function handleNext() {
-  // Validation
-  if (currentStep <= 3 && !answers[`step${currentStep}`]) {
-    errorBox.classList.remove("hidden");
-    return;
-  }
-
-  if (currentStep === 4 && !answers.confirm) {
-    errorBox.textContent = "Please confirm!";
-    errorBox.classList.remove("hidden");
-    return;
-  }
-
-  errorBox.classList.add("hidden");
-
-  if (currentStep < totalSteps) {
+  if (isStepValid(currentStep)) {
     currentStep++;
     updateUI();
   } else {
-    showSuccess();
+    document.getElementById("error-box").classList.remove("hidden");
   }
 }
 
 function handleBack() {
-  if (currentStep === 1) return;
-
-  currentStep--;
-  errorBox.classList.add("hidden");
-  updateUI();
-}
-
-function goToStep(step) {
-  if (step < currentStep) {
-    currentStep = step;
-    errorBox.classList.add("hidden");
+  if (currentStep > 1) {
+    currentStep--;
     updateUI();
   }
 }
 
-function updateUI() {
-  // Step content visibility
-  stepContents.forEach((el) => el.classList.remove("active"));
-  document
-    .getElementById(`step-content-${currentStep}`)
-    ?.classList.add("active");
-
-  // Back button visibility
-  backBtn.style.visibility = currentStep === 1 ? "hidden" : "visible";
-
-  // Button text
-  nextBtn.textContent = currentStep === totalSteps ? "Complete" : "Continue";
-
-  updateIndicators();
-}
-
-function updateIndicators() {
-  circles.forEach((circle, index) => {
-    const stepNumber = index + 1;
-
-    if (stepNumber < currentStep) {
-      // Completed
-      circle.textContent = "✓";
-      circle.className =
-        "flex h-6 w-6 items-center justify-center bg-[#0096C7] text-black font-bold";
-    } else if (stepNumber === currentStep) {
-      // Active
-      circle.textContent = "";
-      circle.className =
-        "flex h-6 w-6 items-center justify-center bg-[#0096C7] ring-4 ring-[#03045E]";
-    } else {
-      // Upcoming
-      circle.textContent = "";
-      circle.className =
-        "flex h-6 w-6 items-center justify-center bg-neutral-300";
+function goToStep(target) {
+  if (target < currentStep) {
+    currentStep = target;
+    updateUI();
+  }
+  // If going forwards, validate every step in between.
+  else if (target > currentStep) {
+    for (let i = currentStep; i < target; i++) {
+      if (!isStepValid(i)) {
+        document.getElementById("error-box").classList.remove("hidden");
+        return; // Stop here, validation failed for step i
+      }
     }
-  });
-
-  lines.forEach((line, index) => {
-    line.style.width = index + 2 <= currentStep ? "100%" : "0%";
-  });
+    currentStep = target;
+    updateUI();
+  }
 }
 
-function showSuccess() {
-  stepContents.forEach((el) => el.classList.remove("active"));
-  document.getElementById("step-content-final").classList.add("active");
-
-  document.getElementById("footer").classList.add("hidden");
-
-  console.log("User Answers:", answers);
-}
-
-const btn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("site__sidebar");
-const mobileMenu = document.getElementById("mobileMenu");
-const menuIcon = document.getElementById("menu-icon");
-const crossIcon = document.getElementById("cross-icon");
-
-btn.addEventListener("click", () => {
-  const isExpanded = btn.getAttribute("aria-expanded") === "true";
-  btn.setAttribute("aria-expanded", !isExpanded);
-
-  sidebar.classList.toggle("!-translate-x-0");
-});
-
-btn.addEventListener("click", () => {
-  menuIcon.classList.toggle("hidden");
-  crossIcon.classList.toggle("hidden");
-});
+updateUI();
