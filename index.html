@@ -27,6 +27,27 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="src/output.css" />
 
+    <!-- Style -->
+    <style>
+      .loader {
+        width: 50px;
+        aspect-ratio: 1;
+        --_c: no-repeat radial-gradient(farthest-side, #EBB400 92%, #0000);
+        background:
+          var(--_c) top,
+          var(--_c) left,
+          var(--_c) right,
+          var(--_c) bottom;
+        background-size: 12px 12px;
+        animation: l7 1s infinite;
+      }
+      @keyframes l7 {
+        to {
+          transform: rotate(0.5turn);
+        }
+      }
+    </style>
+
     <!-- google font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&amp;display=swap"
@@ -877,14 +898,7 @@
             >
               <div class="text-center py-12">
                 <div class="flex justify-center mb-6">
-                  <div class="relative h-16 w-16">
-                    <div
-                      class="absolute inset-0 rounded-full border-4 border-gray-200"
-                    ></div>
-                    <div
-                      class="absolute inset-0 rounded-full border-4 border-[#EBB400] border-t-transparent animate-spin"
-                    ></div>
-                  </div>
+                  <div class="loader"></div> 
                 </div>
 
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">
