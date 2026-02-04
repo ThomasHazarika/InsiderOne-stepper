@@ -32,7 +32,7 @@
       .loader {
         width: 50px;
         aspect-ratio: 1;
-        --_c: no-repeat radial-gradient(farthest-side, #EBB400 92%, #0000);
+        --_c: no-repeat radial-gradient(farthest-side, #ebb400 92%, #0000);
         background:
           var(--_c) top,
           var(--_c) left,
@@ -532,13 +532,14 @@
         ></div>
       </div>
 
+
       <!-- STEPPER STARTS FROM HERE -->
       <div
         id="stepperModal"
         class="fixed inset-0 flex items-center justify-center z-9999 backdrop-blur-sm bg-black/30 transition-opacity duration-300"
       >
         <div
-          class="bg-white rounded-xl p-10 sm:max-w-2xl sm:w-[90%] max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300"
+          class="bg-white rounded-xl p-10 max-w-2xl w-[90%] max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300"
         >
           <!-- Progress Indicator -->
           <div class="flex items-center justify-center mb-10">
@@ -551,7 +552,7 @@
                   1
                 </div>
                 <div
-                  class="step-line w-10 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
+                  class="step-line md:w-16 w-5 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
                 ></div>
               </div>
 
@@ -563,7 +564,7 @@
                   2
                 </div>
                 <div
-                  class="step-line w-10 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
+                  class="step-line md:w-16 w-5 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
                 ></div>
               </div>
 
@@ -575,7 +576,7 @@
                   3
                 </div>
                 <div
-                  class="step-line w-10 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
+                  class="step-line md:w-16 w-5 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
                 ></div>
               </div>
 
@@ -587,7 +588,7 @@
                   4
                 </div>
                 <div
-                  class="step-line w-10 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
+                  class="step-line md:w-16 w-5 h-0.5 bg-gray-300 mx-2 transition-all duration-300"
                 ></div>
               </div>
 
@@ -606,7 +607,7 @@
           <div class="min-h-75 relative overflow-hidden">
             <!-- Step 1 -->
             <div
-              class="step-panel absolute w-full opacity-0 translate-x-full transition-all duration-500 ease-in-out"
+              class="step-panel absolute w-full opacity-0 transition-all duration-700 ease-out"
               data-panel="1"
             >
               <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">
@@ -659,7 +660,7 @@
 
             <!-- Step 2 -->
             <div
-              class="step-panel absolute w-full opacity-0 translate-x-full transition-all duration-500 ease-in-out"
+              class="step-panel absolute w-full opacity-0 transition-all duration-700 ease-out"
               data-panel="2"
             >
               <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">
@@ -710,7 +711,7 @@
 
             <!-- Step 3 -->
             <div
-              class="step-panel absolute w-full opacity-0 translate-x-full transition-all duration-500 ease-in-out"
+              class="step-panel absolute w-full opacity-0 transition-all duration-700 ease-out"
               data-panel="3"
             >
               <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">
@@ -742,7 +743,9 @@
                     value="business"
                     class="hidden"
                   />
-                  <span class="text-base text-gray-700">Business</span>
+                  <span class="text-base text-gray-700"
+                    >Business & Management</span
+                  >
                 </label>
 
                 <label
@@ -754,7 +757,7 @@
                     value="marketing"
                     class="hidden"
                   />
-                  <span class="text-base text-gray-700">Marketing</span>
+                  <span class="text-base text-gray-700">Marketing & Sales</span>
                 </label>
 
                 <label
@@ -766,14 +769,94 @@
                     value="design"
                     class="hidden"
                   />
-                  <span class="text-base text-gray-700">Design</span>
+                  <span class="text-base text-gray-700">Design & Creative</span>
+                </label>
+
+                <label
+                  class="option-card border-2 border-gray-300 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-amber-500 hover:bg-amber-50"
+                >
+                  <input
+                    type="radio"
+                    name="domain"
+                    value="finance"
+                    class="hidden"
+                  />
+                  <span class="text-base text-gray-700"
+                    >Finance & Accounting</span
+                  >
+                </label>
+
+                <label
+                  class="option-card border-2 border-gray-300 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-amber-500 hover:bg-amber-50"
+                >
+                  <input
+                    type="radio"
+                    name="domain"
+                    value="healthcare"
+                    class="hidden"
+                  />
+                  <span class="text-base text-gray-700"
+                    >Healthcare & Medical</span
+                  >
+                </label>
+
+                <label
+                  class="option-card border-2 border-gray-300 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-amber-500 hover:bg-amber-50"
+                >
+                  <input
+                    type="radio"
+                    name="domain"
+                    value="education"
+                    class="hidden"
+                  />
+                  <span class="text-base text-gray-700"
+                    >Education & Training</span
+                  >
+                </label>
+
+                <label
+                  class="option-card border-2 border-gray-300 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-amber-500 hover:bg-amber-50"
+                >
+                  <input
+                    type="radio"
+                    name="domain"
+                    value="engineering"
+                    class="hidden"
+                  />
+                  <span class="text-base text-gray-700">Engineering</span>
+                </label>
+
+                <label
+                  class="option-card border-2 border-gray-300 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-amber-500 hover:bg-amber-50"
+                >
+                  <input
+                    type="radio"
+                    name="domain"
+                    value="legal"
+                    class="hidden"
+                  />
+                  <span class="text-base text-gray-700"
+                    >Legal & Compliance</span
+                  >
+                </label>
+
+                <label
+                  class="option-card border-2 border-gray-300 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-amber-500 hover:bg-amber-50"
+                >
+                  <input
+                    type="radio"
+                    name="domain"
+                    value="others"
+                    class="hidden"
+                  />
+                  <span class="text-base text-gray-700">Others</span>
                 </label>
               </div>
             </div>
 
             <!-- Step 4 -->
             <div
-              class="step-panel absolute w-full opacity-0 translate-x-full transition-all duration-500 ease-in-out"
+              class="step-panel absolute w-full opacity-0 transition-all duration-700 ease-out"
               data-panel="4"
             >
               <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">
@@ -853,7 +936,7 @@
 
             <!-- Step 5 - Confirmation -->
             <div
-              class="step-panel absolute w-full opacity-0 translate-x-full transition-all duration-500 ease-in-out"
+              class="step-panel absolute w-full opacity-0 transition-all duration-700 ease-out"
               data-panel="5"
             >
               <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">
@@ -893,12 +976,12 @@
 
             <!-- Step 6 - Loading/Success -->
             <div
-              class="step-panel absolute w-full opacity-0 translate-x-full transition-all duration-500 ease-in-out"
+              class="step-panel absolute w-full opacity-0 transition-all duration-700 ease-out"
               data-panel="6"
             >
               <div class="text-center py-12">
                 <div class="flex justify-center mb-6">
-                  <div class="loader"></div> 
+                  <div class="loader"></div>
                 </div>
 
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">
@@ -955,7 +1038,7 @@
 
           let currentStep = 1;
           let previousStep = 1;
-          const totalSteps = 5; // Updated to 5
+          const totalSteps = 5;
 
           const stepCircles = document.querySelectorAll(".step-circle");
           const stepLines = document.querySelectorAll(".step-line");
@@ -965,57 +1048,57 @@
           function updateStepper() {
             const isForward = currentStep > previousStep;
 
-            // Update panels with slide animation
-            stepPanels.forEach((panel, index) => {
+            // Update panels with smooth fade and slide animation
+            stepPanels.forEach((panel) => {
               const panelStep = parseInt(panel.getAttribute("data-panel"));
 
               if (panelStep === currentStep) {
                 // Show current panel
-                panel.classList.remove("hidden", "absolute");
-                panel.classList.add("relative");
+                panel.classList.remove("hidden");
+                panel.style.position = "relative";
+                panel.style.zIndex = "10";
 
-                // Set initial position based on direction
-                if (isForward) {
-                  panel.classList.remove(
-                    "translate-x-full",
-                    "-translate-x-full",
-                  );
-                  panel.classList.add("translate-x-full");
+                // Reset and prepare for animation
+                panel.style.transform = isForward
+                  ? "translateX(30px)"
+                  : "translateX(-30px)";
+                panel.style.opacity = "0";
+
+                // Trigger smooth animation
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    panel.style.transform = "translateX(0)";
+                    panel.style.opacity = "1";
+                  });
+                });
+              } else {
+                // Hide other panels
+                if (panelStep === previousStep) {
+                  // Fade out previous panel
+                  panel.style.transform = isForward
+                    ? "translateX(-30px)"
+                    : "translateX(30px)";
+                  panel.style.opacity = "0";
+
+                  setTimeout(() => {
+                    panel.classList.add("hidden");
+                    panel.style.position = "absolute";
+                    panel.style.zIndex = "1";
+                  }, 700);
                 } else {
-                  panel.classList.remove(
-                    "translate-x-full",
-                    "-translate-x-full",
-                  );
-                  panel.classList.add("-translate-x-full");
+                  panel.classList.add("hidden");
+                  panel.style.position = "absolute";
+                  panel.style.zIndex = "1";
                 }
-
-                // Trigger animation
-                setTimeout(() => {
-                  panel.classList.remove(
-                    "opacity-0",
-                    "translate-x-full",
-                    "-translate-x-full",
-                  );
-                  panel.classList.add("opacity-100", "translate-x-0");
-                }, 50);
-              } else if (panelStep === previousStep) {
-                // Hide previous panel
-                if (isForward) {
-                  panel.classList.add("-translate-x-full", "opacity-0");
-                } else {
-                  panel.classList.add("translate-x-full", "opacity-0");
-                }
-
-                setTimeout(() => {
-                  panel.classList.remove("relative");
-                  panel.classList.add("absolute", "hidden");
-                }, 500);
               }
             });
 
-            // Update progress circles
+            // Update progress circles with smooth transition
             stepCircles.forEach((circle, index) => {
               const stepNumber = index + 1;
+
+              // Add smooth scale animation
+              circle.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
 
               if (stepNumber < currentStep) {
                 // Completed step
@@ -1027,29 +1110,34 @@
                 );
                 circle.classList.add("bg-yellow-500", "text-white");
                 circle.innerHTML = "✓";
+                circle.style.transform = "scale(1)";
               } else if (stepNumber === currentStep) {
-                // Active step
+                // Active step - pulse effect
                 circle.classList.remove(
                   "bg-gray-300",
                   "text-gray-600",
-                  "bg-emerald-500",
+                  "bg-yellow-500",
                 );
                 circle.classList.add("bg-[#EBB400]", "text-white");
                 circle.innerHTML = stepNumber;
+                circle.style.transform = "scale(1.1)";
               } else {
                 // Inactive step
                 circle.classList.remove(
                   "bg-[#EBB400]",
                   "text-white",
-                  "bg-emerald-500",
+                  "bg-yellow-500",
                 );
                 circle.classList.add("bg-gray-300", "text-gray-600");
                 circle.innerHTML = stepNumber;
+                circle.style.transform = "scale(1)";
               }
             });
 
-            // Update progress lines
+            // Update progress lines with smooth width animation
             stepLines.forEach((line, index) => {
+              line.style.transition = "all 0.5s ease-in-out";
+
               if (index < currentStep - 1) {
                 line.classList.remove("bg-gray-300");
                 line.classList.add("bg-yellow-500");
@@ -1237,6 +1325,7 @@
           updateStepper();
         });
       </script>
+
       <!-- main contents -->
       <main
         id="site__main"
